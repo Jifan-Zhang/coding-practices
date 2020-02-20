@@ -1,7 +1,7 @@
-//Remember the Median number
 #include <stdio.h>
 int med_pos; //Left node or middle node
 float med_val;
+
 void get_median(int *n, int size){
 	if(size%2){
 		med_pos=(size-1)/2;
@@ -12,14 +12,18 @@ void get_median(int *n, int size){
 	//printf("%d\n",med_pos);printf("%f\n",med_val);
 }
 
+
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
 	//printf("%d,%d",nums1Size,nums2Size);
 	get_median(nums1,nums1Size); int pos_a=med_pos; float med_a_val=med_val;
 	get_median(nums2,nums2Size); int pos_b=med_pos; float med_b_val=med_val;
+	if(med_a_val<med_b_val){
+		nums1+=
+	}
 	return 0.0;
 }
 
-		
+
 
 
 int main(){
