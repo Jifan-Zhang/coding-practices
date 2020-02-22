@@ -5,7 +5,16 @@ int findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size)
 		target_count=(nums1Size+nums2Size-1)/2; //要干掉target_count个数字
 	int pos_1_val=*(nums1+target_count/2-1); //val to be compared in a
 	int pos_2_val=*(nums2+target_count/2-1); //val to be compared in b
-	printf("数组1检测：%d; 数组2检测：%d\n",pos_1_val,pos_2_val);
+	if(target_count<=1){
+		if(nums1Size+nums2Size==2)
+			return (float)(nums1+nums2)/2;
+		else if(nums1Size+nums2Size==3)
+			return *nums1>*nums2?*nums1:*nums2;
+		else if(nums1Size+nums2Size==4)
+			//Do something
+			
+	}
+	printf("数组1检测值：%d; 数组2检测值：%d\n",pos_1_val,pos_2_val);
 
 	if(pos_1_val<pos_2_val){
 		nums1+=target_count/2;
@@ -23,14 +32,11 @@ int findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size)
 		findMedianSortedArrays(nums1, nums1Size, nums2, nums2Size);
 	//result=((*nums1)-(*nums2))>0 ? (*nums1),(*nums2);
 	printf("数组1开头：%d\n数组2开头：%d\n",*nums1,*nums2);
-	return 0;
+	return *nums1>*nums2?*nums1:*nums2;
 }
 
-
-
-
 int main(){
-	int a[] ={1,2,3};
+	int a[] ={1,2};
 	int b[] ={3,4};
-	findMedianSortedArrays(a, sizeof(a)/4, b, sizeof(b)/4);	
+	printf("中位数：%d",findMedianSortedArrays(a, sizeof(a)/4, b, sizeof(b)/4));	
 }
