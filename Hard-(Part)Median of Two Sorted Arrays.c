@@ -1,33 +1,36 @@
 #include <stdio.h>
-int med_pos; //Left node or middle node
-float med_val;
+int target_count=-1;
+int findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
+	if(target_count==-1)
+		target_count=(nums1Size+nums2Size-1)/2; //要干掉target_count个数字
+	int pos_1_val=*(nums1+target_count/2-1); //val to be compared in a
+	int pos_2_val=*(nums2+target_count/2-1); //val to be compared in b
+	printf("数组1检测：%d; 数组2检测：%d\n",pos_1_val,pos_2_val);
 
-void get_median(int *n, int size){
-	if(size%2){
-		med_pos=(size-1)/2;
-		med_val=(float)*(n+med_pos);}
-	else{
-		med_pos=size/2-1;
-		med_val=(float)(*(n+med_pos)+*(n+med_pos+1))/2;}
-	//printf("%d\n",med_pos);printf("%f\n",med_val);
-}
-
-
-double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size){
-	//printf("%d,%d",nums1Size,nums2Size);
-	get_median(nums1,nums1Size); int pos_a=med_pos; float med_a_val=med_val;
-	get_median(nums2,nums2Size); int pos_b=med_pos; float med_b_val=med_val;
-	if(med_a_val<med_b_val){
-		nums1+=
+	if(pos_1_val<pos_2_val){
+		nums1+=target_count/2;
+		nums1Size-=target_count/2;
+		printf("干掉了数组1 小于%d 的数据\n",pos_1_val);
 	}
-	return 0.0;
+	else{
+		nums2+=nums2Size/2;
+		nums2Size-=nums2Size/2;
+		printf("干掉了数组2 小于%d 的数据\n",pos_2_val);
+    }
+	target_count-=target_count/2;
+	printf("剩余size：%d\n",target_count);
+	if(target_count>1)
+		findMedianSortedArrays(nums1, nums1Size, nums2, nums2Size);
+	//result=((*nums1)-(*nums2))>0 ? (*nums1),(*nums2);
+	printf("数组1开头：%d\n数组2开头：%d\n",*nums1,*nums2);
+	return 0;
 }
 
 
 
 
 int main(){
-	int a[] ={1,2,3,4,5,6,7,8,9,10};
-	int b[] ={3,4,5,6,7,8};
+	int a[] ={1,2,3};
+	int b[] ={3,4};
 	findMedianSortedArrays(a, sizeof(a)/4, b, sizeof(b)/4);	
 }
