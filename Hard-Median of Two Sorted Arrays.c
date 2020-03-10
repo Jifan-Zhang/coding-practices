@@ -1,4 +1,3 @@
-// Encoding: Unicode
 #include <stdio.h>
 int target_count=-1;
 int original_length;
