@@ -1,3 +1,6 @@
+//Time consuming: beating 57%
+//RAM consuming: beating 100%
+
 char * longestPalindrome(char * a){
     if(*a=='\0' || *(a+1)=='\0'){
         return a;
