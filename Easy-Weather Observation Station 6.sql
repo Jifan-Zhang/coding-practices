@@ -1,0 +1,1 @@
+select distinct city from STATION where substring(CITY,1,1) in (select "a" union select "e" union select "i" union select "o" union select "u")
